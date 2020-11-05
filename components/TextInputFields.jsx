@@ -8,7 +8,7 @@ const AlertIcon = (props) => (
     <Icon {...props} name='alert-circle-outline' />
 );
 
-const TextInputFields = ({ value, type, onTextChange, placeholder, caption, label }) => {
+const TextInputFields = ({ value, type, onTextChange, placeholder, caption, label, disable }) => {
 
     const [secureTextEntry, setSecureTextEntry] = useState(type === INPUT_TYPE.PASSWORD)
 
@@ -32,6 +32,7 @@ const TextInputFields = ({ value, type, onTextChange, placeholder, caption, labe
             captionIcon={caption ? AlertIcon : null}
             secureTextEntry={secureTextEntry}
             onChangeText={(e) => onTextChange(e)}
+            disabled={disable}
         />
     );
 };
@@ -42,7 +43,8 @@ TextInputFields.propTypes = {
     onTextChange: PropTypes.func,
     label: PropTypes.string,
     placeholder: PropTypes.string,
-    caption: PropTypes.string
+    caption: PropTypes.string,
+    disable: PropTypes.bool
 };
 
 

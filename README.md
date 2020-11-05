@@ -8,8 +8,8 @@ Find your next favorite courses on Coursebox app
 
 - [ ] 1.  Authentication (Login/Register/Forget Password/Verify Password)
   - [x] Login
-  - [ ] Register
-  - [ ] ForgetPassword
+  - [x] Register
+  - [x] ForgetPassword
   - [ ] VerifyPassword
 - [ ] 2.  AccountManagement (Profile/Setting)
   - [ ] Profile

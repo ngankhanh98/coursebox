@@ -1,9 +1,10 @@
 import { Layout, Text } from '@ui-kitten/components';
 import React, { useState } from 'react';
-import { StyleSheet } from 'react-native';
+import { Image } from 'react-native';
 import CustomButton from '../../components/CustomButton';
 import TextInputFields from '../../components/TextInputFields';
 import { INPUT_TYPE } from '../../contants';
+import { styles } from './Login.style';
 
 
 function Login(props) {
@@ -27,17 +28,16 @@ function Login(props) {
         // TODO: call api & update global state
     }
     return (
-        <Layout >
-            <Text>Login</Text>
+        <>
+            <Image source={require('../../assets/drawable-ldpi/logo.png')}></Image>
+            <Text category='h2'>Login</Text>
             <TextInputFields onTextChange={onChangeUsername} type={INPUT_TYPE.PLAINTEXT} label='Username' placeholder='Username...' />
             <TextInputFields onTextChange={onChangePassword} type={INPUT_TYPE.PASSWORD} label='Password' placeholder='Password...' />
             <CustomButton onButtonPress={onLogin} name='Login' />
-        </Layout>
+        </>
     )
 }
 
-const styles = StyleSheet.create({
 
-})
 export default Login
 

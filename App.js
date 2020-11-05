@@ -3,6 +3,7 @@ import { ApplicationProvider, IconRegistry, Layout } from '@ui-kitten/components
 import { EvaIconsPack } from '@ui-kitten/eva-icons';
 import React from 'react';
 import { StyleSheet } from 'react-native';
+import ForgotPassword from './screens/ForgotPassword/ForgotPassword';
 import Login from './screens/Login/Login';
 import Register from './screens/Register/Register';
 
@@ -12,9 +13,10 @@ export default function App() {
     <>
       <IconRegistry icons={EvaIconsPack} />
       <ApplicationProvider {...eva} theme={eva.light}>
-        <Layout style={styles.container}>
+        <Layout style={styles.row}>
           {/* <Login /> */}
           <Register />
+          {/* <ForgotPassword /> */}
         </Layout>
       </ApplicationProvider>
     </>
@@ -22,8 +24,10 @@ export default function App() {
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    padding: 30,
-  }
+  row: {
+    flexDirection: 'column',
+    alignItems: 'center',
+    justifyContent: 'center',
+    padding: 30
+  },
 })
