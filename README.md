@@ -1,6 +1,6 @@
 # Coursebox
 
-Find your next favorite courses on Coursebox app
+Find your new favorite courses on Coursebox app
 
 ## Requirement
 
