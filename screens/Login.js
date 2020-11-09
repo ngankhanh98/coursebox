@@ -1,6 +1,6 @@
 import React from 'react';
 import { StyleSheet, Dimensions, ScrollView, Image, ImageBackground, Platform } from 'react-native';
-import { Block, Text, theme } from 'galio-framework';
+import { Block, Button, Text, theme } from 'galio-framework';
 import { LinearGradient } from 'expo-linear-gradient';
 
 import { Icon } from '../components';
@@ -25,8 +25,11 @@ export default class Login extends React.Component {
               <CustomInput label="Password" placeholder="Password" type="password"></CustomInput>
             </Block>
           </ScrollView>
+          <Block center>
+            <Button>SIGN IN</Button>
+          </Block>
         </Block>
-      </Block >
+      </Block>
     );
   }
 }
