@@ -15,6 +15,7 @@ import SettingsScreen from '../screens/Settings';
 import CustomDrawerContent from './Menu';
 import { Icon, Header } from '../components';
 import { Images, materialTheme } from "../constants/";
+import Login from '../screens/Login';
 
 const { width } = Dimensions.get("screen");
 
@@ -49,6 +50,30 @@ function ProfileStack(props) {
         }}
       />
     </Stack.Navigator>
+  );
+}
+
+function LoginStack(props) {
+  return (
+    <Login />
+    // <Stack.Navigator initialRouteName="Login" mode="card" headerMode="screen">
+    //   <Stack.Screen
+    //     name="Login"
+    //     component={Login}
+    // options={{
+    //   header: ({ navigation, scene }) => (
+    //     <Header
+    //       white
+    //       transparent
+    //       title="Login"
+    //       scene={scene}
+    //       navigation={navigation}
+    //     />
+    //   ),
+    //   headerTransparent: true
+    // }}
+    //   />
+    // </Stack.Navigator>
   );
 }
 
@@ -91,12 +116,12 @@ function ComponentsStack(props) {
 function HomeStack(props) {
   return (
     <Stack.Navigator mode="card" headerMode="screen">
-      <Stack.Screen 
+      <Stack.Screen
         name="Home"
         component={HomeScreen}
         options={{
           header: ({ navigation, scene }) => (
-            <Header 
+            <Header
               search
               tabs
               title="Home"
@@ -106,7 +131,7 @@ function HomeStack(props) {
           )
         }}
       />
-      <Stack.Screen 
+      <Stack.Screen
         name="Pro"
         component={ProScreen}
         options={{
@@ -309,7 +334,8 @@ export default function OnboardingStack(props) {
           headerTransparent: true
         }}
       />
-      <Stack.Screen name="App" component={AppStack} />
+      {/* <Stack.Screen name="App" component={AppStack} /> */}
+      <Stack.Screen name="Login" component={LoginStack} />
     </Stack.Navigator>
   );
 }
@@ -369,7 +395,7 @@ const HomeStack = createStackNavigator({
   },
 },
 {
-  cardStyle: { 
+  cardStyle: {
     backgroundColor: '#EEEEEE', //this is the backgroundColor for the app
   },
   transitionConfig,
