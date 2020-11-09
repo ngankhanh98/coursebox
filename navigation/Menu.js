@@ -105,7 +105,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#4B1958',
     paddingHorizontal: 28,
     paddingBottom: theme.SIZES.BASE,
-    paddingTop: theme.SIZES.BASE * 2,
+    paddingTop: theme.SIZES.BASE,
     justifyContent: 'center',
   },
   footer: {
