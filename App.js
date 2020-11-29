@@ -1,83 +1,29 @@
-import { NavigationContainer } from '@react-navigation/native';
-import { AppLoading } from 'expo';
-import { Asset } from 'expo-asset';
-import { Block, GalioProvider } from 'galio-framework';
+import * as eva from '@eva-design/eva';
+import { ApplicationProvider, IconRegistry } from '@ui-kitten/components';
+import { EvaIconsPack } from '@ui-kitten/eva-icons';
 import React from 'react';
-import { Image, Platform, StatusBar } from 'react-native';
-// Before rendering any navigation stack
-import { enableScreens } from 'react-native-screens';
-import { Images, materialTheme, products } from './constants/';
-import Screens from './navigation/Screens';
+import { LoginScreen, RegisterScreen, ResetPasswordScreen, WelcomeScreen } from './screens/Auth'
+import { createStackNavigator } from '@react-navigation/stack'
+import { NavigationContainer } from "@react-navigation/native";
+import Background from './components/Background';
 
 
+const Stack = createStackNavigator();
 
-
-enableScreens();
-
-// cache app images
-const assetImages = [
-  Images.Pro,
-  Images.Profile,
-  Images.Avatar,
-  Images.Onboarding,
-];
-
-// cache product images
-products.map(product => assetImages.push(product.image));
-
-function cacheImages(images) {
-  return images.map(image => {
-    if (typeof image === 'string') {
-      return Image.prefetch(image);
-    } else {
-      return Asset.fromModule(image).downloadAsync();
-    }
-  });
-}
-
-export default class App extends React.Component {
-  state = {
-    isLoadingComplete: false,
-  };
-
-  render() {
-    if (!this.state.isLoadingComplete && !this.props.skipLoadingScreen) {
-      return (
-        <AppLoading
-          startAsync={this._loadResourcesAsync}
-          onError={this._handleLoadingError}
-          onFinish={this._handleFinishLoading}
-        />
-      );
-    } else {
-      return (
-        <>
-          <NavigationContainer>
-            <GalioProvider theme={materialTheme}>
-              <Block flex>
-                {Platform.OS === 'ios' && <StatusBar barStyle="default" />}
-                <Screens />
-              </Block>
-            </GalioProvider>
-          </NavigationContainer>
-        </>
-      );
-    }
-  }
-
-  _loadResourcesAsync = async () => {
-    return Promise.all([
-      ...cacheImages(assetImages),
-    ]);
-  };
-
-  _handleLoadingError = error => {
-    // In this case, you might want to report the error to your error
-    // reporting service, for example Sentry
-    console.warn(error);
-  };
-
-  _handleFinishLoading = () => {
-    this.setState({ isLoadingComplete: true });
-  };
+export default function App() {
+  return (
+    <>
+      <IconRegistry icons={EvaIconsPack} />
+      <ApplicationProvider {...eva} theme={eva.light}>
+        <NavigationContainer>
+          <Stack.Navigator initialRouteName="Welcome">
+            <Stack.Screen name="Welcome" component={WelcomeScreen} options={{ headerShown: false }} />
+            <Stack.Screen name="Login" component={LoginScreen} options={{ headerShown: false }} />
+            <Stack.Screen name="Register" component={RegisterScreen} options={{ headerShown: false }} />
+            <Stack.Screen name="ResetPassword" component={ResetPasswordScreen} options={{ headerShown: false }} />
+          </Stack.Navigator>
+        </NavigationContainer>
+      </ApplicationProvider>
+    </>
+  );
 }
