@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, View } from 'react-native';
+import { ImageBackground, StyleSheet, View, TouchableOpacity } from 'react-native';
 import PropTypes from 'prop-types'
 import { Button, Card, Layout, Text } from '@ui-kitten/components';
 
@@ -21,11 +21,16 @@ const Footer = () => (
 );
 
 const CourseThumnail = ({ title, teacher, description }) => (
-  <Card style={styles.card} header={(props) => <Header {...props} title={title} teacher={teacher} />} footer={Footer}>
-    <Text>
-      {description}
-    </Text>
-  </Card>
+  <TouchableOpacity onPress={() => console.log('Pressed')} style={{
+    width: 250,
+    height: 150,
+  }} >
+    <ImageBackground source={require('../assets/icon.png')} style={styles.image} imageStyle={{ borderRadius: 10 }}>
+    </ImageBackground>
+    <Text style={{ marginLeft: 3 }}>Inside</Text>
+  </TouchableOpacity>
+
+
 );
 
 
@@ -36,10 +41,11 @@ const styles = StyleSheet.create({
     margin: 8,
     marginLeft: 20
   },
-  card: {
+  image: {
     flex: 1,
-    marginBottom: 20
-    // padding: 5,
+    marginBottom: 20,
+    marginRight: 15,
+
   },
   footerContainer: {
     flexDirection: 'row',

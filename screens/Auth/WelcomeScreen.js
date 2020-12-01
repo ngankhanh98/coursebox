@@ -6,7 +6,6 @@ import Button from '../../components/Button';
 import Logo from '../../components/Logo';
 
 const WelcomeScreen = ({ navigation }) => (
-    // <Layout style={styles.container}>
     <Background>
         {/* <Logo /> */}
         <Text style={styles.header} category='h1'>Coursebox</Text>
@@ -22,9 +21,7 @@ const WelcomeScreen = ({ navigation }) => (
             appearance='outline'
             onButtonPress={() => navigation.navigate('Register')}
         />
-
     </Background>
-    // </Layout>
 );
 
 const styles = StyleSheet.create({

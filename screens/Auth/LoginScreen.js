@@ -29,6 +29,8 @@ function LoginScreen({ navigation }) {
         console.log('username', username)
         console.log('password', password)
         // TODO: call api & update global state
+
+        navigation.navigate('Account')
     }
     return (
         // <Layout style={styles.container}>
