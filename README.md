@@ -11,10 +11,10 @@ Find your new favorite courses on Coursebox app
   - [x] Register
   - [x] ForgetPassword
   - [ ] VerifyPassword
-- [ ] 2.  AccountManagement (Profile/Setting)
+- [x] 2.  AccountManagement (Profile/Setting)
   - [ ] Profile
   - [ ] Setting
-- [ ] 3.  Courses (ListCourses)
+- [x] 3.  Courses (ListCourses)
 - [ ] 4.  CourseDetail
 - [ ] 5.  Main (Browse/Home/Download/Search)
   - [ ] Browse
