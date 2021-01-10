@@ -20,7 +20,7 @@ const user = {
 function userReducer(state = user, action) {
     switch (action.type) {
         case 'user/login': {
-            return { ...user, ...action.payload }
+            return { ...state, ...action.payload }
         }
         default:
             return state

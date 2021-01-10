@@ -20,14 +20,14 @@ const Footer = () => (
   </View>
 );
 
-const CourseThumnail = ({ title, teacher, description }) => (
+const CourseThumnail = ({ title, teacher, description, image }) => (
   <TouchableOpacity onPress={() => console.log('Pressed')} style={{
     width: 250,
     height: 150,
   }} >
-    <ImageBackground source={require('../assets/icon.png')} style={styles.image} imageStyle={{ borderRadius: 10 }}>
+    <ImageBackground source={{uri: image}} style={styles.image} imageStyle={{ borderRadius: 5 }}>
     </ImageBackground>
-    <Text style={{ marginLeft: 3 }}>Inside</Text>
+    <Text style={{ marginLeft: 3 }}>{title}</Text>
   </TouchableOpacity>
 
 
@@ -60,7 +60,8 @@ const styles = StyleSheet.create({
 CourseThumnail.propTypes = {
   title: PropTypes.string,
   teacher: PropTypes.string,
-  description: PropTypes.string
+  description: PropTypes.string,
+  image: PropTypes.string
 }
 
 export default CourseThumnail
