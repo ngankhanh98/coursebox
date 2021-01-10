@@ -7,9 +7,11 @@ import { Provider } from 'react-redux';
 import AppNavigator from './screens/Dashboard';
 import store from './store';
 
+
 const Stack = createStackNavigator();
 
-export default function App() {
+function App({ toast }) {
+  
   return (
     <Provider store={store}>
       <IconRegistry icons={EvaIconsPack} />
@@ -29,3 +31,6 @@ export default function App() {
     </Provider>
   );
 }
+
+
+export default App
