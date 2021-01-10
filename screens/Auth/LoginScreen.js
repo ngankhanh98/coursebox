@@ -8,7 +8,7 @@ import Button from '../../components/Button';
 import TextInput from '../../components/TextInput';
 
 import { login } from '../../actions/user.action';
-import { INPUT_TYPE } from '../../contants';
+import { CAPTION, INPUT_TYPE } from '../../contants';
 import { getUserToken } from '../../selectors/user.selector'
 
 
@@ -18,6 +18,7 @@ function LoginScreen({ navigation, login, token }) {
 
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
+    const [emailInvalidation, setEmailInvalidation] = useState(null)
 
     const onChangeEmail = (email) => {
         setEmail(email)
@@ -28,17 +29,20 @@ function LoginScreen({ navigation, login, token }) {
     }
 
     const onLogin = async () => {
-        login({ email, password })
+        // validate email 
+        setEmailInvalidation(email.includes('@') ? null : CAPTION.INVALID_EMAIL_INPUT)
+
+        if (!emailInvalidation)
+            login({ email, password })
     }
 
     useEffect(() => {
-        console.log('token', token)
     }, [token])
 
     return (
         <Background>
             <Text style={styles.text} category='h1'>Welcome back.</Text>
-            <TextInput onTextChange={onChangeEmail} type={INPUT_TYPE.PLAINTEXT} label='Email' placeholder='Email...' />
+            <TextInput onTextChange={onChangeEmail} type={INPUT_TYPE.PLAINTEXT} label='Email' placeholder='Email...' caption={emailInvalidation} />
             <TextInput onTextChange={onChangePassword} type={INPUT_TYPE.PASSWORD} label='Password' placeholder='Password...' />
             <View style={styles.forgotPassword}>
                 <TouchableOpacity

@@ -46,7 +46,6 @@ const TabNavigator = () => (
 const AppNavigator = ({ toast }) => {
 
     useEffect(() => {
-        console.log('toast', toast)
         ToastAndroid.show(toast.message, ToastAndroid.SHORT)
     }, [toast])
 

@@ -27,7 +27,6 @@ const register = ({ username, email, phone, password }) => async (dispatch) => {
     }
     try {
         const res = await axios.post(BASE_URL + '/user/register', data)
-        console.log('res', res)
         dispatch(TOAST_ADD({ status: res.response.status, message: TOAST_MESSAGE.REGISTER_SUCCESS }))
     } catch (error) {
         dispatch(TOAST_ADD({ status: error.response.status, message: error.response.data.message }))

@@ -27,8 +27,8 @@ const TextInput = ({ value, type, onTextChange, placeholder, caption, label }) =
     return (
         <Input style={styles.main}
             size='large'
+            status={!caption ? null : 'danger'}
             value={value}
-            // label={label}
             placeholder={placeholder}
             caption={caption}
             accessoryRight={type === INPUT_TYPE.PASSWORD ? renderIcon : null}
@@ -45,7 +45,7 @@ TextInput.propTypes = {
     onTextChange: PropTypes.func,
     label: PropTypes.string,
     placeholder: PropTypes.string,
-    caption: PropTypes.string
+    caption: PropTypes.string,
 };
 
 
