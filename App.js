@@ -1,18 +1,19 @@
 import * as eva from '@eva-design/eva';
+import { createStackNavigator } from '@react-navigation/stack';
 import { ApplicationProvider, IconRegistry } from '@ui-kitten/components';
 import { EvaIconsPack } from '@ui-kitten/eva-icons';
 import React from 'react';
-import { LoginScreen, RegisterScreen, ResetPasswordScreen, WelcomeScreen } from './screens/Auth'
-import { createStackNavigator } from '@react-navigation/stack'
-import { NavigationContainer } from "@react-navigation/native";
-import Background from './components/Background';
-import AppNavigator from './screens/Dashboard'
+import { Provider } from 'react-redux';
+import AppNavigator from './screens/Dashboard';
+import store from './store';
+
 
 const Stack = createStackNavigator();
 
-export default function App() {
+function App({ toast }) {
+  
   return (
-    <>
+    <Provider store={store}>
       <IconRegistry icons={EvaIconsPack} />
       <ApplicationProvider {...eva} theme={eva.light}>
 
@@ -27,6 +28,9 @@ export default function App() {
           </Stack.Navigator>
         </NavigationContainer> */}
       </ApplicationProvider>
-    </>
+    </Provider>
   );
 }
+
+
+export default App

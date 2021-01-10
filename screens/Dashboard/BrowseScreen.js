@@ -1,133 +1,45 @@
-// import React from 'react'
-// import { StyleSheet, ScrollView, Text, View } from 'react-native'
-// import Background from '../../components/Background'
-// import CourseThumnail from '../../components/CourseThumnail'
-// import SearchBar from '../../components/SearchBar'
-
-// function BrowseScreen(props) {
-//     return (
-//         <>
-//             <SearchBar />
-//             <ScrollView>
-//                 <Background>
-//                     <Text>Populars</Text>
-//                     <CourseThumnail title="Title" teacher="Teacher" description="This is description" />
-//                     <CourseThumnail title="Title" teacher="Teacher" description="This is description" />
-//                     <CourseThumnail title="Title" teacher="Teacher" description="This is description" />
-//                     <CourseThumnail title="Title" teacher="Teacher" description="This is description" />
-//                 </Background>
-//             </ScrollView>
-//         </>
-//     )
-// }
-
-// BrowseScreen.propTypes = {
-
-// }
-
-// const styles = StyleSheet.create({
-//     searchBar: {
-//         borderRadius: 50,
-
-//     }
-// })
-
-// export default BrowseScreen
-
-import React from 'react';
+import React, { useEffect } from 'react';
 import { StyleSheet, View } from 'react-native';
 import { ScrollView } from 'react-native-gesture-handler';
-import CourseThumnail from '../../components/CourseThumnail';
-import SearchBar from '../../components/SearchBar';
 import { Text } from '@ui-kitten/components'
 
-const data = [
-    {
-        title: 'Group 1',
-        data: [
-            {
-                name: 'Default',
-                slug: 'default',
-            },
-            {
-                name: 'Example A',
-                slug: 'example-a',
-            },
-            {
-                name: 'Example B',
-                slug: 'example-b',
-            },
-        ],
-    },
-    {
-        title: 'Group 2',
-        data: [
-            {
-                name: 'Example C',
-                slug: 'example-c',
-            },
-            {
-                name: 'Example D',
-                slug: 'example-d',
-            },
-        ],
-    },
-];
+import CourseThumnail from '../../components/CourseThumnail';
+import SearchBar from '../../components/SearchBar';
 
-export default function BrowserScreen() {
+import { LABEL } from '../../contants'
+import { connect } from 'react-redux';
+import { getTopRateCourse, getTopNewCourse, getTopSellCourse } from '../../selectors/course.selector';
+import { loadTopRateCourse, loadTopNewCourse, loadTopSellCourse } from '../../actions/course.action';
+
+function BrowserScreen({ topRateCourse, loadTopRateCourse, topNewCourse, loadTopNewCourse, topSellCourse, loadTopSellCourse }) {
+
+    useEffect(() => {
+        loadTopNewCourse()
+        loadTopSellCourse()
+        loadTopRateCourse()
+    }, [])
+
     return (<>
 
         <SearchBar />
         <ScrollView>
             <View style={styles.container}>
-                <Text category="h6" style={{ marginBottom: 20 }}>Popular</Text>
+                <Text category="h6" style={{ marginBottom: 20 }}>{LABEL.TOP_NEW_COURSE}</Text>
                 <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
-                    <CourseThumnail />
-                    <CourseThumnail />
-                    <CourseThumnail />
-                    <CourseThumnail />
-                    <CourseThumnail />
-                    <CourseThumnail />
-                    <CourseThumnail />
-                    <CourseThumnail />
-                    <CourseThumnail />
-                    <CourseThumnail />
-                    <CourseThumnail />
-                    <CourseThumnail />
+                    {topNewCourse.map((course) => (<CourseThumnail key={course.id} title={course.title} description={course.description} image={course.imageUrl} />))}
                 </ScrollView>
             </View>
             <View style={styles.container}>
-                <Text category="h6" style={{ marginBottom: 20 }}>Popular</Text>
+                <Text category="h6" style={{ marginBottom: 20 }}>{LABEL.TOP_SELL_COURSE}</Text>
                 <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
-                    <CourseThumnail />
-                    <CourseThumnail />
-                    <CourseThumnail />
-                    <CourseThumnail />
-                    <CourseThumnail />
-                    <CourseThumnail />
-                    <CourseThumnail />
-                    <CourseThumnail />
-                    <CourseThumnail />
-                    <CourseThumnail />
-                    <CourseThumnail />
-                    <CourseThumnail />
+                    {topSellCourse.map((course) => (<CourseThumnail key={course.id} title={course.title} description={course.description} image={course.imageUrl} />))}
+
                 </ScrollView>
             </View>
             <View style={styles.container}>
-                <Text category="h6" style={{ marginBottom: 20 }}>Popular</Text>
+                <Text category="h6" style={{ marginBottom: 20 }}>{LABEL.TOP_RATE_COURSE}</Text>
                 <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
-                    <CourseThumnail />
-                    <CourseThumnail />
-                    <CourseThumnail />
-                    <CourseThumnail />
-                    <CourseThumnail />
-                    <CourseThumnail />
-                    <CourseThumnail />
-                    <CourseThumnail />
-                    <CourseThumnail />
-                    <CourseThumnail />
-                    <CourseThumnail />
-                    <CourseThumnail />
+                    {topRateCourse.map((course) => (<CourseThumnail key={course.id} title={course.title} description={course.description} image={course.imageUrl} />))}
                 </ScrollView>
             </View>
         </ScrollView>
@@ -141,3 +53,11 @@ const styles = StyleSheet.create({
         padding: 20
     },
 })
+const mapStateToProps = (state) => {
+    topRateCourse = getTopRateCourse(state)
+    topNewCourse = getTopNewCourse(state)
+    topSellCourse = getTopSellCourse(state)
+    return { topRateCourse, topNewCourse, topSellCourse }
+}
+
+export default connect(mapStateToProps, { loadTopRateCourse, loadTopNewCourse, loadTopSellCourse })(BrowserScreen)
