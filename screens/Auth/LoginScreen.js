@@ -1,43 +1,44 @@
-import { Layout, StyleService, Text, useStyleSheet } from '@ui-kitten/components';
-import React, { useState } from 'react';
+import { StyleService, Text, useStyleSheet } from '@ui-kitten/components';
+import React, { useState, useEffect } from 'react';
 import { TouchableOpacity, View } from 'react-native';
+import { connect } from 'react-redux';
+
 import Background from '../../components/Background';
 import Button from '../../components/Button';
-import Logo from '../../components/Logo';
 import TextInput from '../../components/TextInput';
+
+import { login } from '../../actions/user.action';
 import { INPUT_TYPE } from '../../contants';
+import { getUserToken } from '../../selectors/user.selector'
 
 
-function LoginScreen({ navigation }) {
+function LoginScreen({ navigation, login, token }) {
 
     const styles = useStyleSheet(themedStyles);
 
-    const [username, setUsername] = useState('')
+    const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
 
-    const onChangeUsername = (username) => {
-        setUsername(username)
-        console.log('username', username)
+    const onChangeEmail = (email) => {
+        setEmail(email)
     }
 
     const onChangePassword = (password) => {
         setPassword(password)
-        console.log('password', password)
     }
 
-    const onLogin = () => {
-        console.log('username', username)
-        console.log('password', password)
-        // TODO: call api & update global state
-
-        navigation.navigate('Account')
+    const onLogin = async () => {
+        login({ email, password })
     }
+
+    useEffect(() => {
+        console.log('token', token)
+    }, [token])
+
     return (
-        // <Layout style={styles.container}>
         <Background>
-            {/* <Logo /> */}
             <Text style={styles.text} category='h1'>Welcome back.</Text>
-            <TextInput onTextChange={onChangeUsername} type={INPUT_TYPE.PLAINTEXT} label='Username' placeholder='Username...' />
+            <TextInput onTextChange={onChangeEmail} type={INPUT_TYPE.PLAINTEXT} label='Email' placeholder='Email...' />
             <TextInput onTextChange={onChangePassword} type={INPUT_TYPE.PASSWORD} label='Password' placeholder='Password...' />
             <View style={styles.forgotPassword}>
                 <TouchableOpacity
@@ -56,7 +57,6 @@ function LoginScreen({ navigation }) {
                 </TouchableOpacity>
             </View>
         </Background>
-        // </Layout>
     )
 }
 
@@ -89,5 +89,13 @@ const themedStyles = StyleService.create({
         marginBottom: 24,
     },
 })
-export default LoginScreen
+const mapStateToProps = (state) => {
+    token = getUserToken(state)
+    return { token }
+}
+
+export default connect(
+    mapStateToProps,
+    { login }
+)(LoginScreen);
 
