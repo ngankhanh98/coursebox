@@ -39,5 +39,17 @@ const loadTopSellCourse = () => async (dispatch) => {
     }
 }
 
-export { loadTopRateCourse,loadTopNewCourse, loadTopSellCourse }
+const LOAD_MY_COURSE = (payload) => ({ type: 'course/load_my_course', payload: payload })
+const loadMyCourse = () => async (dispatch) => {
+    try {
+        const res = await http.post('/user/get-process-courses', { limit: 10, page: 1 });
+        console.log('res.data.payload', res.data.payload)
+        dispatch(LOAD_MY_COURSE(res.data.payload))
+        dispatch(TOAST_ADD({ status: res.status, message: TOAST_MESSAGE.LOAD_COURSE_SUCCESS }))
+    } catch (error) {
+
+    }
+}
+
+export { loadTopRateCourse, loadTopNewCourse, loadTopSellCourse, loadMyCourse }
 

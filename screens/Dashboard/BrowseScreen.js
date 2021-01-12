@@ -21,7 +21,7 @@ function BrowserScreen({ topRateCourse, loadTopRateCourse, topNewCourse, loadTop
 
     return (<>
 
-        <SearchBar />
+        {/* <SearchBar /> */}
         <ScrollView>
             <View style={styles.container}>
                 <Text category="h6" style={{ marginBottom: 20 }}>{LABEL.TOP_NEW_COURSE}</Text>

@@ -2,7 +2,8 @@ const course = {
     top_sell: [],
     top_new: [],
     top_rate: [],
-    my_course: []
+    my_course: [],
+    my_recommend: []
 }
 
 function courseReducer(state = course, action) {
@@ -18,6 +19,9 @@ function courseReducer(state = course, action) {
         }
         case 'course/load_my_course': {
             return { ...state, my_course: action.payload }
+        }
+        case 'course/load_my_recommend': {
+            return { ...state, my_recommend: action.payload }
         }
         case 'course/add_my_course': {
             const { my_course } = state

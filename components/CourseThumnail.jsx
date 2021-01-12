@@ -25,7 +25,7 @@ const CourseThumnail = ({ title, teacher, description, image }) => (
     width: 250,
     height: 150,
   }} >
-    <ImageBackground source={{uri: image}} style={styles.image} imageStyle={{ borderRadius: 5 }}>
+    <ImageBackground source={{ uri: image }} style={styles.image} imageStyle={{ borderRadius: 5 }}>
     </ImageBackground>
     <Text style={{ marginLeft: 3 }}>{title}</Text>
   </TouchableOpacity>

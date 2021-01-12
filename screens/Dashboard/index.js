@@ -1,19 +1,20 @@
-import React, {useEffect} from 'react';
-import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import { BottomNavigation, BottomNavigationTab, Layout, Text } from '@ui-kitten/components';
-import { connect } from 'react-redux';
-import { ToastAndroid } from 'react-native'
-
-import BrowseScreen from './BrowseScreen';
-import AccountScreen from './AccountScreen'
+import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
+import { BottomNavigation, BottomNavigationTab, Icon } from '@ui-kitten/components';
+import React, { useEffect } from 'react';
+import { ToastAndroid } from 'react-native';
+import { connect } from 'react-redux';
+import { getToast } from '../../selectors/toast.selector';
 import { LoginScreen, RegisterScreen, ResetPasswordScreen, WelcomeScreen } from '../Auth';
-import { getToast } from '../../selectors/toast.selector'
+import AccountScreen from './AccountScreen';
+import BrowseScreen from './BrowseScreen';
+
+
+
 
 const { Navigator, Screen } = createBottomTabNavigator();
 const Stack = createStackNavigator();
-
 
 const AuthNavigator = () =>
     <Stack.Navigator initialRouteName="Welcome">
@@ -29,8 +30,8 @@ const BottomTabBar = ({ navigation, state }) => (
     <BottomNavigation
         selectedIndex={state.index}
         onSelect={index => navigation.navigate(state.routeNames[index])}>
-        <BottomNavigationTab title='BROWSE' />
-        <BottomNavigationTab title='USER' />
+        <BottomNavigationTab title='Browser' />
+        <BottomNavigationTab title='User' />
     </BottomNavigation>
 );
 
@@ -41,7 +42,6 @@ const TabNavigator = () => (
         <Screen name='User' component={AuthNavigator} />
     </Navigator>
 );
-
 
 const AppNavigator = ({ toast }) => {
 
