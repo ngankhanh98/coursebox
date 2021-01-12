@@ -1,9 +1,8 @@
 import { Icon, MenuItem, OverflowMenu, TopNavigation, TopNavigationAction } from '@ui-kitten/components';
 import React from 'react';
 import { Image, StyleSheet } from 'react-native';
-import { connect } from 'react-redux';
 
-import { getUserAvatarUrl } from '../selectors/user.selector'
+// TODO: login -> AvatarIcon=()=><Image source={{uri: avatar}}/>
 
 const LogoIcon = (props) => (
     <Image source={require('../assets/logo.png')} style={{ width: 30, height: 30 }}>
