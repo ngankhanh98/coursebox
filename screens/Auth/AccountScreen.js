@@ -25,15 +25,9 @@ const StackMenu = ({ navigation }) => {
         <TouchableOpacity style={styles.buttonContainer} onPress={() => navigation.navigate('Welcome')}>
             <Text>Logout</Text>
         </TouchableOpacity>
-        {/* {menu.map(item => <TouchableOpacity style={styles.buttonContainer}>
-            <Text>{item.title}</Text>
-        </TouchableOpacity>)} */}
     </>)
 }
 
-// export default class Account extends Component {
-
-// render() {
 function Account({ navigation }) {
     return (
         <View style={styles.container}>
@@ -44,17 +38,6 @@ function Account({ navigation }) {
                     <Text style={styles.name}>John Doe</Text>
                     <Text style={styles.info}>UX Designer / Mobile developer</Text>
                     <Text style={styles.description}>Lorem ipsum dolor sit amet, saepe sapientem eu nam. Qui ne assum electram expetendis, omittam deseruisse consequuntur ius an,</Text>
-
-                    {/* <TouchableOpacity style={styles.buttonContainer}>
-                        <Text>Personal information</Text>
-                    </TouchableOpacity>
-                    <TouchableOpacity style={styles.buttonContainer}>
-                        <Text>Enrolled courses</Text>
-                    </TouchableOpacity>
-                    <TouchableOpacity style={styles.buttonContainer} onPress={() => navigation.navigate('Welcome')}>
-                        <Text>Logout</Text>
-                    </TouchableOpacity> */}
-
                     <StackMenu navigation={navigation} />
 
                 </View>

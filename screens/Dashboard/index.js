@@ -6,24 +6,12 @@ import React, { useEffect } from 'react';
 import { ToastAndroid } from 'react-native';
 import { connect } from 'react-redux';
 import { getToast } from '../../selectors/toast.selector';
-import { LoginScreen, RegisterScreen, ResetPasswordScreen, WelcomeScreen } from '../Auth';
-import AccountScreen from './AccountScreen';
+import { getUserToken } from '../../selectors/user.selector'
+import AuthNavigator from '../Auth';
 import BrowseScreen from './BrowseScreen';
 
-
-
-
 const { Navigator, Screen } = createBottomTabNavigator();
-const Stack = createStackNavigator();
 
-const AuthNavigator = () =>
-    <Stack.Navigator initialRouteName="Welcome">
-        <Stack.Screen name="Welcome" component={WelcomeScreen} options={{ headerShown: false }} />
-        <Stack.Screen name="Login" component={LoginScreen} options={{ headerShown: false }} />
-        <Stack.Screen name="Register" component={RegisterScreen} options={{ headerShown: false }} />
-        <Stack.Screen name="ResetPassword" component={ResetPasswordScreen} options={{ headerShown: false }} />
-        <Stack.Screen name="Account" component={AccountScreen} options={{ headerShown: false }} />
-    </Stack.Navigator>
 
 
 const BottomTabBar = ({ navigation, state }) => (
@@ -36,12 +24,14 @@ const BottomTabBar = ({ navigation, state }) => (
 );
 
 
-const TabNavigator = () => (
-    <Navigator tabBar={props => <BottomTabBar {...props} />}>
-        <Screen name='Browse' component={BrowseScreen} />
-        <Screen name='User' component={AuthNavigator} />
-    </Navigator>
-);
+const TabNavigator = () => {
+    return (
+        <Navigator tabBar={props => <BottomTabBar {...props} />}>
+            <Screen name='Browse' component={BrowseScreen} />
+            <Screen name='User' component={AuthNavigator} />
+        </Navigator>
+    )
+}
 
 const AppNavigator = ({ toast }) => {
 
@@ -59,4 +49,5 @@ const mapStateToProps = (state) => {
     toast = getToast(state)
     return { toast }
 }
+
 export default connect(mapStateToProps)(AppNavigator)
