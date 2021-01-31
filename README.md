@@ -1,6 +1,49 @@
 # Mobile Application
 
-# React Navigation
+## Getting Started
+
+### 📦 Installation
+
+#### Prerequisite
+
+Make sure you have React Native, Expo properly setted up on the machines (both PC and smartphone)
+
+#### Source code
+
+You can either have the source code via **remote git repository** or from **an attached folder**
+
+- If you're with the attached folder, you unzip it.
+- If you're with git repository, here are two options:
+    - Using git command on your machine
+
+        Direct to the directory you want to save the source code. In terminal, enter:
+
+        ```bash
+        $ git clone https://github.com/ngankhanh98/coursebox.git
+        ```
+
+    - Download from github
+
+        Click to  [https://github.com/ngankhanh98/coursebox/archive/master.zip](https://github.com/ngankhanh98/coursebox/archive/master.zip) to download the source code. Unzip when the download process is done.
+
+#### Build and run
+
+In the terminal, enter:
+
+```bash
+# Direct to the target directory
+$ cd coursebox
+
+# Install neccessary packages. Packages should be completely installed without any error.
+$ npm install
+
+# Build and run 
+$ npm run start
+```
+
+Now, you will find a simulating mobile application is running inside Expo in your smart phone.
+
+## React Navigation
 
 React Navigation was used to route screens in the mobile application. For example, in the group of screen **Auth** contains **LoginScreen, RegisterScreen, ResetPasswordScreen,** and **AccountScreen**, we can implement navigation as instruction below.
 
@@ -70,7 +113,7 @@ export defaultfunction LoginScreen({ navigation }) {
 
 ```
 
-### Private Route with React Navigation
+#### Private Route with React Navigation
 
 A sceenario is on the table: what if a certain screen is protected and only accessed with a matched condition. 
 
@@ -117,7 +160,7 @@ export default connect(mapStateToProps)(AuthNavigator)
 
 `token` knowledge is about to be presented in the next section, using Redux
 
-# Redux
+## Redux
 
 With state management, Redux is in charged. Getting through folder structure is a first step to understand.
 
@@ -148,7 +191,7 @@ With state management, Redux is in charged. Getting through folder structure is 
 
 I was using the exactly same architecture as Redux suggestion, which I am pretty confident to say so.
 
-# Http Request
+## Http Request
 
 Http Requests are made inside **actions.** It waits until get a response did the application continue to dispatch a reducer (in charge of changing state).
 
